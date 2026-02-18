@@ -1,4 +1,4 @@
-# CaseIH 9110 AgOpenGPS Autosteer Project
+# CaseIH 9110 AgOpenGPS — Project Roadmap
 
 ## Project Overview
 
@@ -16,140 +16,6 @@ Building a complete RTK autosteer system for a CaseIH 9110 Row Crop Special arti
 - [AgOpenGPS Documentation](https://docs.agopengps.com/)
 - [AgOpenGPS GitHub](https://github.com/AgOpenGPS-Official/AgOpenGPS)
 - [Outback ED-C9300SF Install Guide](https://outbackguidance.zendesk.com/hc/en-us/article_attachments/360018111173) (reference for hydraulic install)
-
----
-
-## Bill of Materials
-
-### Status Key
-| Symbol | Meaning |
-|--------|---------|
-| ⬜ | Not ordered |
-| 🟡 | Ordered, waiting |
-| 🟢 | Received |
-| ✅ | Installed/Tested |
-
----
-
-## Rover Electronics - AIO Board & Components
-
-| Item | Description | Qty | Supplier | Part # / Link | ~Price | Status | Notes |
-|------|-------------|-----|----------|---------------|--------|--------|-------|
-| AIO v4.5 PCB (Micro) | All-in-one board, JLCPCB assembled | 5 | JLCPCB | [GitHub Files](https://github.com/AgOpenGPS-Official/Boards) | $60-80 | ⬜ | Order 5, use 1, have spares |
-| Teensy 4.1 | Microcontroller with Ethernet | 1 | PJRC / DigiKey | [PJRC Store](https://www.pjrc.com/store/teensy41.html) | $35 | ⬜ | Must have Ethernet pins |
-| Teensy Ethernet Headers | 2mm pitch long headers | 1 | DigiKey | MTMM-103-10-T-D-355-ND | $5 | ⬜ | For Ethernet connection |
-| Cytron MD13S | Motor/valve driver, 13A | 1 | Amazon / Cytron.io | [Cytron](https://www.cytron.io/p-13amp-6v-30v-dc-motor-driver) | $18 | ⬜ | Drives valve solenoids |
-| BNO085 IMU | 9-DOF IMU for roll/pitch | 1 | Adafruit / DigiKey | [Adafruit 4754](https://www.adafruit.com/product/4754) | $22 | ⬜ | Must mount flat |
-| SimpleRTK2B F9P | Primary GPS (position) | 1 | Ardusimple | [Standard F9P](https://www.ardusimple.com/product/simplertk2b/) | $220 | ⬜ | Rover position receiver |
-| SimpleRTK2B Micro F9P | Secondary GPS (heading) | 1 | Ardusimple | [Micro F9P](https://www.ardusimple.com/product/simplertk2b-micro/) | $200 | ⬜ | For dual antenna heading |
-| GPS Antenna | u-blox ANN-MB or similar | 2 | Ardusimple | [ANN-MB](https://www.ardusimple.com/product/ann-mb-00-ip67/) | $50 ea | ⬜ | Multi-band, need 2 for dual |
-| Antenna Coax Cables | SMA male to SMA male, 3m | 2 | Amazon | RG58 or LMR-195 | $15 ea | ⬜ | Roof to cab run |
-| SMA Bulkhead Connectors | Panel mount, female-female | 2 | Amazon / DigiKey | | $5 ea | ⬜ | Mount on enclosure |
-| Ampseal 23-pin Connector | Male + female + pins + seals | 1 kit | DigiKey / Mouser | TE 2455016-1 (male) | $25 | ⬜ | Main harness connector |
-| Ampseal Crimp Pins | For 18-22 AWG wire | 25+ | DigiKey | TE pins | $10 | ⬜ | Get extras |
-| Hammond Enclosure | Aluminum, ~200x120x60mm | 1 | Amazon / eBay | Hammond 1590 series | $25 | ⬜ | Or 3D print enclosure |
-
-**Subtotal: ~$750-850**
-
----
-
-## Hydraulic Components
-
-| Item | Description | Qty | Supplier | Part # / Link | ~Price | Status | Notes |
-|------|-------------|-----|----------|---------------|--------|--------|-------|
-| Hydraulic Valve Block | LS type, 35-60 L/min | 1 | Navisklep / agopengps.pl | [Navisklep](https://navisklep.pl/en/k/hydraulic-blocks-hydraulic-valves/) | $400-600 | ⬜ | Specify CaseIH 9110 LS system |
-| Pressure Transducer | 0-250 bar, 0.5-4.5V ratiometric | 1 | SUCO / With valve | 0606-25209-B-007 | $50-80 | ⬜ | NPT 1/4", AMP Superseal 1.5 |
-| Hydraulic Fittings | JIC adapters, run-tees | Kit | Local hydraulic shop | Per Outback guide | $100-150 | ⬜ | Reference ED-C9300SF install |
-| Hydraulic Hoses | Custom lengths, JIC ends | Set | Local hydraulic shop | Per install | $100-150 | ⬜ | P, T, LS, A, B lines |
-
-**Subtotal: ~$650-980**
-
----
-
-## Sensors & Feedback
-
-| Item | Description | Qty | Supplier | Part # / Link | ~Price | Status | Notes |
-|------|-------------|-----|----------|---------------|--------|--------|-------|
-| Pivot Angle Sensor (PAS) | Rotary potentiometer, 5V | 1 | Amazon / Factory | Delphi ER10031 or check factory sensor | $0-50 | ⬜ | Check if factory sensor usable first |
-| Engage Button | Momentary switch, sealed | 1 | Amazon / DigiKey | | $10 | ⬜ | Cab mount, engage autosteer |
-| Work Switch | Toggle or momentary | 1 | Amazon / DigiKey | | $10 | ⬜ | Optional, for section control |
-
-**Subtotal: ~$20-70**
-
----
-
-## RTK Base Station
-
-| Item | Description | Qty | Supplier | Part # / Link | ~Price | Status | Notes |
-|------|-------------|-----|----------|---------------|--------|--------|-------|
-| SimpleRTK2B F9P | Base station GPS receiver | 1 | Ardusimple | [Standard F9P](https://www.ardusimple.com/product/simplertk2b/) | $220 | ⬜ | Survey-in mode |
-| Survey Antenna | Beitian BT-200 or ANN-MB | 1 | Ardusimple / Amazon | | $80-150 | ⬜ | Good multipath rejection |
-| Raspberry Pi 4 | 2GB+ RAM | 1 | Amazon / Pi supplier | | $55 | ⬜ | Runs RTKBase software |
-| Pi Power Supply | 5V 3A USB-C | 1 | Amazon | | $15 | ⬜ | |
-| MicroSD Card | 32GB+ Class 10 | 1 | Amazon | | $10 | ⬜ | For RTKBase OS |
-| Weatherproof Enclosure | NEMA rated, for outdoor | 1 | Amazon | | $25 | ⬜ | Mount on grain bin |
-| Antenna Mount | Pole or roof bracket | 1 | Local / Amazon | | $30 | ⬜ | Clear sky view |
-| Ethernet Cable | Outdoor rated, to iNet radio | 1 | Amazon | | $15 | ⬜ | |
-
-**Subtotal: ~$450-520**
-
----
-
-## Communication / Networking
-
-| Item | Description | Qty | Supplier | Part # / Link | ~Price | Status | Notes |
-|------|-------------|-----|----------|---------------|--------|--------|-------|
-| MDS iNet 900 Radio | 900 MHz ISM, Ethernet bridge | 2 | Already owned | | $0 | ✅ | Base + Rover pair |
-| Small Ethernet Switch | 5-port, 12V | 1 | Amazon | | $20 | ⬜ | For cab: tablet + AIO + radio |
-| Ethernet Cables | CAT5e/6, various lengths | 3-4 | Amazon | | $15 | ⬜ | |
-
-**Subtotal: ~$35**
-
----
-
-## Cab Setup
-
-| Item | Description | Qty | Supplier | Part # / Link | ~Price | Status | Notes |
-|------|-------------|-----|----------|---------------|--------|--------|-------|
-| Windows Tablet | 10"+ touchscreen, rugged preferred | 1 | Amazon / eBay | Panasonic FZ-G1 (used) recommended | $200-400 | ⬜ | Runs AgOpenGPS |
-| RAM Mount | Tablet mounting system | 1 | RAM Mounts / Navisklep | | $60 | ⬜ | Secure cab mount |
-| 12V USB Adapter | For tablet power | 1 | Amazon | | $15 | ⬜ | QC3.0 recommended |
-
-**Subtotal: ~$275-475**
-
----
-
-## Wiring & Cables
-
-| Item | Description | Qty | Supplier | Part # / Link | ~Price | Status | Notes |
-|------|-------------|-----|----------|---------------|--------|--------|-------|
-| Multi-conductor Cable | 7 or 14 conductor, automotive | 25 ft | Auto parts / Amazon | Trailer wire works well | $30 | ⬜ | Main harness |
-| 16-18 AWG Wire | For power circuits | 25 ft | Auto parts | Red + Black | $15 | ⬜ | |
-| 20-22 AWG Wire | For signal circuits | 50 ft | Auto parts | Various colors | $15 | ⬜ | |
-| Wire Loom | Split, 1/2" and 1/4" | 20 ft | Amazon | | $15 | ⬜ | Protection |
-| Heat Shrink | Assorted sizes | Kit | Amazon | | $10 | ⬜ | |
-| Crimp Terminals | Ring, spade, butt | Kit | Amazon | | $15 | ⬜ | |
-| Fuse Holder + Fuses | Inline, 10A-15A | 2 | Auto parts | | $10 | ⬜ | Protect 12V circuits |
-| Weatherpack Connectors | 2, 3, 4 pin | Kit | Amazon | | $20 | ⬜ | For sensor connections |
-
-**Subtotal: ~$130**
-
----
-
-## Project Total Estimate
-
-| Category | Low | High |
-|----------|-----|------|
-| Rover Electronics | $750 | $850 |
-| Hydraulic Components | $650 | $980 |
-| Sensors & Feedback | $20 | $70 |
-| RTK Base Station | $450 | $520 |
-| Communication | $35 | $35 |
-| Cab Setup | $275 | $475 |
-| Wiring & Cables | $130 | $130 |
-| **TOTAL** | **$2,310** | **$3,060** |
-
-*Compare to commercial systems at $15,000-25,000+*
 
 ---
 
@@ -315,9 +181,11 @@ Building a complete RTK autosteer system for a CaseIH 9110 Row Crop Special arti
 ### Phase 3: Base Station
 - [ ] Assemble base station hardware
 - [ ] Flash RTKBase to Raspberry Pi
-- [ ] Survey in base antenna position
-- [ ] Configure NTRIP output
+- [ ] Survey in base antenna position (24+ hours for best accuracy)
+- [ ] Configure NTRIP output for local use
 - [ ] Test with iNet 900 radio link
+- [ ] Register base station on RTK2Go (free community caster)
+- [ ] Configure RTKBase to push corrections to RTK2Go
 
 ### Phase 4: Tractor Installation
 - [ ] Mount GPS antennas on roof (1m+ spacing)
@@ -349,7 +217,353 @@ Building a complete RTK autosteer system for a CaseIH 9110 Row Crop Special arti
 - [AgOpenGPS Forum - Versatile 9480 Thread](https://discourse.agopengps.com/t/suitable-block-for-a-versatile-new-holland-9480-articulated-tractor/20279)
 - [RTKBase Project](https://github.com/Stefal/rtkbase)
 - [RTK2Go (Free NTRIP Caster)](http://rtk2go.com/)
+- [RTK2Go Base Registration](http://www.rtk2go.com/new-reservation/)
 - [MnCORS (Free MN RTK)](https://mncors.dot.state.mn.us/) - Check coverage for SD border
+
+---
+
+## RTK2Go Community Contribution
+
+**Goal:** Share our base station corrections with the RTK2Go community (FREE)
+
+### What is RTK2Go?
+- Free, community-run NTRIP caster
+- Anyone can connect and use corrections from registered base stations
+- Helps other farmers, surveyors, and hobbyists in the area
+- No cost to register or use
+
+### Registration Info
+- **Website:** http://www.rtk2go.com/new-reservation/
+- **Mount point name:** Choose something descriptive (e.g., `FLORENCE_SD` or `NE_SD_FARM`)
+- **Requirements:** Valid email, base station coordinates, RTCM3 output
+- **Status:** ⬜ Not registered yet
+
+### RTKBase Configuration
+RTKBase has built-in support for pushing to RTK2Go:
+1. Go to RTKBase web interface → Settings → NTRIP
+2. Add RTK2Go as an NTRIP caster destination:
+   - Server: `rtk2go.com`
+   - Port: `2101`
+   - Mount point: Your registered name
+   - Password: Your registered password
+3. Enable "Push to NTRIP caster"
+
+### Benefits
+- **Backup:** If iNet 900 link fails, can still get corrections via cell/internet from RTK2Go
+- **Community:** Help other AgOpenGPS users and surveyors in NE South Dakota / SW Minnesota
+- **Redundancy:** Your base becomes part of a larger network
+- **Free:** No subscription fees, ever
+
+---
+
+## RTK Coverage Map
+
+**Status:** 🚧 TODO - Build interactive map
+
+### Planned Features
+- Google Maps API with base station location marker
+- Concentric range rings showing accuracy zones:
+  - 0-10 km: ±1-2 cm (green)
+  - 10-20 km: ±2-3 cm (yellow)
+  - 20-35 km: ±3-5 cm (orange)
+- Field boundary overlays (optional)
+- Link to live base station status
+
+### Hosting
+- **Web server:** Self-hosted
+- **Files needed:** `coverage-map.html`, `coverage-map.js`
+- **API:** Google Maps JavaScript API (requires API key)
+
+---
+
+## Future Enhancement: MQTT Fleet Tracking
+
+**Status:** 🚧 Planned
+
+### Overview
+Use existing Synology NAS infrastructure (MQTT broker + MongoDB) to enable real-time fleet tracking between multiple AgOpenGPS machines. Scalable to cloud services if needed.
+
+### Architecture
+```
+TRACTOR 1                                    TRACTOR 2
+┌─────────────┐                              ┌─────────────┐
+│  AgOpenGPS  │                              │  AgOpenGPS  │
+│    AgIO     │ UDP 8888                     │    AgIO     │ UDP 8888
+└──────┬──────┘ (broadcast)                  └──────┬──────┘ (broadcast)
+       │                                            │
+       ▼                                            ▼
+┌─────────────┐                              ┌─────────────┐
+│ Sidecar App │                              │ Sidecar App │
+│  (listens)  │                              │  (listens)  │
+└──────┬──────┘                              └──────┬──────┘
+       │                                            │
+       └──────────────┬─────────────────────────────┘
+                      │ MQTT over iNet 900 / Cellular
+                      ▼
+              ┌───────────────┐
+              │  MQTT BROKER  │
+              │ (Synology or  │
+              │    Cloud)     │
+              └───────────────┘
+```
+
+**Key Point:** The sidecar app doesn't intercept or modify anything — AgIO already broadcasts on UDP 8888, and the sidecar simply listens alongside AgOpenGPS. Zero risk to core functionality.
+
+### MQTT Topics
+```
+farm/machines/{machine_id}/position    → { lat, lon, heading, speed }
+farm/machines/{machine_id}/status      → { autosteer_engaged, sections }
+farm/machines/{machine_id}/heartbeat   → { online detection }
+```
+
+### Components Needed
+- Python MQTT bridge script (runs on each tablet)
+- Leaflet.js web dashboard (shows all machines on map)
+- MongoDB logging (track history, coverage analysis)
+
+### Benefits
+- See all machines in field in real-time
+- Avoid overlap when multiple machines working
+- Historical tracking and playback
+- Works over iNet 900 OR cellular backup
+
+---
+
+## Temporary Fleet Members (Neighbor Helping)
+
+### The Scenario
+Neighbor Bob comes over with his Fendt to help finish planting. You want him on your fleet map for the day.
+
+### How It Works
+```
+YOUR MQTT BROKER (Synology or Cloud)
+         │
+         │ Topic: farm/machines/+/position
+         │ (wildcard accepts ANY machine_id)
+         │
+    ┌────┴────┬─────────────┐
+    │         │             │
+    ▼         ▼             ▼
+ 9110_neal  jd4440_neal  fendt_bob  ← Bob joins temporarily
+ (you)      (your other)  (neighbor)
+```
+
+### Neighbor Setup (One-Time)
+Bob installs the sidecar app and configures:
+```json
+{
+    "machine_id": "fendt_bob",
+    "machine_name": "Bob's Fendt 720",
+    "mqtt_broker": "your-public-ip-or-cloud",
+    "mqtt_user": "guest_bob",
+    "mqtt_pass": "harvest2024",
+    "fleet_topic": "farm/machines"
+}
+```
+
+### Even Easier: QR Code Invite
+Generate a QR code containing the config. Bob scans it, sidecar auto-configures, he's in the fleet. After harvest, revoke his credentials or just let them expire.
+
+### Security (MQTT ACL)
+```
+# Your machines - full access
+user neal
+topic readwrite farm/machines/#
+
+# Guest users - limited access
+user guest_bob
+topic write farm/machines/fendt_bob/#    # Can only publish as himself
+topic read farm/machines/#                # Can see everyone
+```
+
+---
+
+## Cloud Scaling Options
+
+### When to Consider Cloud
+- More than 5-10 machines regularly
+- Multiple farms / locations
+- Want 99.9% uptime guarantee
+- Sharing across county / region
+- Don't want to maintain infrastructure
+
+### Cost Comparison
+
+| Option | Monthly Cost | Machines | Notes |
+|--------|-------------|----------|-------|
+| **Synology (self-hosted)** | $0 | Unlimited | You maintain it, your public IP |
+| **AWS IoT Core** | ~$10-30 | 10-50 | Pay per message, very reliable |
+| **Azure IoT Hub** | ~$25-50 | 10-100 | Good integration with other Azure services |
+| **HiveMQ Cloud** | ~$50-100 | Unlimited | Managed MQTT, easy setup |
+| **EMQX Cloud** | ~$40-80 | Unlimited | High performance, good dashboard |
+
+At $100/month budget, you could run a **regional fleet network** with proper authentication, monitoring, and high availability.
+
+### Migration Path
+1. **Start:** Synology self-hosted (free, learn the system)
+2. **Grow:** Add cloud backup broker for redundancy
+3. **Scale:** Move primary to cloud, Synology becomes local cache
+4. **Regional:** Invite neighboring farms, share costs
+
+---
+
+## Network Redundancy
+
+### Primary Path: iNet 900 Radio
+- RTK corrections direct from base station
+- MQTT via home network to Synology
+- Low latency, high reliability
+
+### Backup Path: iPhone WiFi Hotspot
+- RTK corrections via NTRIP over cellular (RTK2Go or own base)
+- MQTT via public IP to Synology
+- Works anywhere with cell coverage
+
+### Failover Scenarios
+| Primary (iNet 900) | Backup (Cellular) | Result |
+|--------------------|-------------------|--------|
+| ✅ Up | — | Normal operation |
+| ❌ Down | ✅ Available | Connect iPhone hotspot, switch NTRIP to RTK2Go |
+| ❌ Down | ❌ No signal | WAAS/SBAS only (~1m accuracy), no fleet tracking |
+
+### Key Requirements
+- Synology NAS has fixed public IP ✅
+- RTKBase pushes to RTK2Go continuously ✅
+- MQTT broker accessible from internet ✅
+
+---
+
+## Future Vision: Leader-Follower Automation
+
+**Status:** 🌌 Far Future / Dream Phase
+
+### Rule #1: Spill No Coffee ☕
+
+All automation features must prioritize smooth, predictable operation. Jerky steering, unexpected disengagement, or command conflicts are unacceptable.
+
+### The Minion Fleet Concept (a.k.a. "Pied Piper Mode")
+
+```
+                    LEADER
+                 (The Piper)
+                     🚜
+                      │
+          ┌───────────┼───────────┐
+          │           │           │
+          ▼           ▼           ▼
+         🚜          🚜          🚜
+     Minion 1    Minion 2    Minion 3
+    (Grain Cart) (Sprayer)  (Neighbor Bob)
+```
+
+### Technical Architecture
+
+AgIO uses UDP ports for bidirectional communication:
+- **UDP 8888**: AgIO → AgOpenGPS (telemetry: position, sensors)
+- **UDP 9999**: AgOpenGPS → AgIO (commands: steering, sections)
+- **UDP 2233**: AgIO ↔ Teensy (hardware control)
+
+A sidecar app can listen on 8888 AND send to 9999, enabling external control.
+
+### Mode Arbitration (Prevents Command Conflicts)
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   MANUAL MODE   │◄──►│   AOG AUTO      │◄──►│  FOLLOWER MODE  │
+│                 │    │                 │    │                 │
+│ • Human driving │    │ • AOG steering  │    │ • Sidecar       │
+│ • No commands   │    │ • Normal ops    │    │   steering      │
+│   accepted      │    │                 │    │ • AOG disengaged│
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+
+Transitions:
+• Grab wheel → Instant MANUAL (pressure sensor)
+• Accept follow request → FOLLOWER
+• Leader releases → Back to MANUAL or AOG AUTO
+• Connection loss > 500ms → MANUAL (safety)
+```
+
+### Follow Mode Engagement Sequence
+
+```
+1. Leader: "Request Tractor 2 follow" (button press)
+   └─► MQTT: farm/fleet/tractor2/command = "FOLLOW_REQUEST"
+
+2. Follower: Displays request, operator confirms (physical button)
+   └─► Checks: Am I in a safe zone? Is leader in a safe zone?
+   └─► MQTT: farm/fleet/tractor2/status = "FOLLOWING"
+
+3. Active Following:
+   └─► Leader position via MQTT (10 Hz)
+   └─► Sidecar calculates offset position
+   └─► Sidecar sends steering commands to local AgIO
+
+4. Auto-Disengage Triggers:
+   • Operator grabs wheel
+   • Leader enters headland/unsafe zone
+   • Connection loss > 500ms
+   • Speed differential too high
+   • Follower too close or too far from target
+
+5. Clean Exit:
+   └─► Sidecar stops sending commands
+   └─► AOG can re-engage when operator chooses
+   └─► Coffee remains in cup ☕✓
+```
+
+### Integration Path
+
+| Phase | Description | Requires Fork? |
+|-------|-------------|----------------|
+| 1 | Sidecar app proves concept | No |
+| 2 | Community feedback & testing | No |
+| 3 | Propose feature to AOG maintainers | No |
+| 4 | Native AOG integration (if accepted) | Upstream PR |
+
+### Safety Disclaimer
+
+Leader-follower automation is **experimental** and should only be used:
+- At low speeds (< 5 mph)
+- In open fields with clear sight lines
+- With experienced operators monitoring both machines
+- With physical e-stops tested and accessible
+- After extensive testing in non-critical situations
+
+This is DIY equipment without safety certification. Use at your own risk.
+
+---
+
+## Project Roadmap
+
+### Phase 1: Core System (Current)
+- [ ] RTK Base Station at grain bin
+- [ ] Rover system on CaseIH 9110
+- [ ] Basic autosteer working
+- [ ] Documentation complete
+
+### Phase 2: Infrastructure 🚧
+- [ ] RTK2Go registration and contribution
+- [ ] Coverage map on web server (Google Maps API)
+- [ ] Network redundancy (iNet 900 + cellular failover)
+
+### Phase 3: Fleet Tracking 📡
+- [ ] MQTT sidecar app (position publishing)
+- [ ] Web dashboard (Leaflet.js map)
+- [ ] NTRIP heartbeat monitoring
+- [ ] Temporary fleet member support (neighbor integration)
+
+### Phase 4: Advanced Fleet 🌐
+- [ ] Cloud scaling evaluation (AWS IoT / managed MQTT)
+- [ ] County-wide network concept
+- [ ] Shared coverage maps
+- [ ] Historical tracking and playback
+
+### Phase 5: The Minion Army 🎶🚜
+- [ ] Leader-follower sidecar proof of concept
+- [ ] Safe zone painting
+- [ ] Mode arbitration
+- [ ] Community testing
+- [ ] Upstream PR to AgOpenGPS (if viable)
 
 ---
 
